@@ -22,6 +22,11 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected boolean needRegisterNetworkChangeObserver() {
+        return true;
+    }
+
+    @Override
     public void onNetConnected(NetworkType networkType) {
         networkStateTv.setText(networkType.toString());
     }

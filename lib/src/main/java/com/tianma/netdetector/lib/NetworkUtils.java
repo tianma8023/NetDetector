@@ -141,10 +141,6 @@ public class NetworkUtils {
         return tm != null ? tm.getNetworkOperatorName() : null;
     }
 
-    private static final int NETWORK_TYPE_GSM = 16;
-    private static final int NETWORK_TYPE_TD_SCDMA = 17;
-    private static final int NETWORK_TYPE_IWLAN = 18;
-
     /**
      * 获取当前网络类型
      * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
@@ -169,7 +165,7 @@ public class NetworkUtils {
             } else if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
                 switch (info.getSubtype()) {
 
-                    case NETWORK_TYPE_TD_SCDMA:
+                    case TelephonyManager.NETWORK_TYPE_TD_SCDMA:
                     case TelephonyManager.NETWORK_TYPE_EVDO_A:
                     case TelephonyManager.NETWORK_TYPE_UMTS:
                     case TelephonyManager.NETWORK_TYPE_EVDO_0:
@@ -182,12 +178,12 @@ public class NetworkUtils {
                         netType = NetworkType.NETWORK_3G;
                         break;
 
-                    case NETWORK_TYPE_IWLAN:
                     case TelephonyManager.NETWORK_TYPE_LTE:
+                    case TelephonyManager.NETWORK_TYPE_IWLAN:
                         netType = NetworkType.NETWORK_4G;
                         break;
 
-                    case NETWORK_TYPE_GSM:
+                    case TelephonyManager.NETWORK_TYPE_GSM:
                     case TelephonyManager.NETWORK_TYPE_GPRS:
                     case TelephonyManager.NETWORK_TYPE_CDMA:
                     case TelephonyManager.NETWORK_TYPE_EDGE:
