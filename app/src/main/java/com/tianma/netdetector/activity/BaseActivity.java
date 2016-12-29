@@ -13,12 +13,6 @@ import com.tianma.netdetector.lib.NetworkType;
  */
 public class BaseActivity extends AppCompatActivity implements NetStateChangeObserver {
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
