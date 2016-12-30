@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NetDetector</string>
+    <string name="net_error_prompt">网络连接不可用</string>
 </resources>
