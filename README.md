@@ -2,7 +2,6 @@
 A sample of detecting the changement of network state on Android device by using BroadcastReceiver.
 
 通过使用BroadcastReceiver来检测Android设备网络变化的示例
-=====================
 
 ## 0x01 目标
 在实际开发中，我们不可避免地需要对请求错误进行处理，通常情况下，我们会这样去处理错误请求：
@@ -36,7 +35,6 @@ A sample of detecting the changement of network state on Android device by using
     - 抽象出 `BaseActivity` ，提供注册/取消注册 `BroadcastReceiver` 的方法，并实现 `NetStateChangeObserver`
     - 需要监听网络状态的 `Activity` 调用 `BaseActivity` 提供的方法即可
 
-
 2.  
     - 定义 `BroadcastReceiver` 监听网络状态，并提供回调接口 `NetStateChangeObserver` 用以回调网络状态的变化，并在 `BroadcastReceiver` 中维护 `NetStateChangeObserver` 列表，当网络发生变化则通知这些 Observer ，实现回调。
     - 在 `Application` 中注册/取消注册 `BroadcastReceiver`
@@ -46,7 +44,6 @@ A sample of detecting the changement of network state on Android device by using
 上面的两种思路，比较重要的区别在于，第1中是在 `Activity` 中注册 `BroadcastReceiver` , 后者是在 `Application` 中注册 `BroadcastReceiver`。前者需要多次注册 `BroadcastReceiver` 而后者只注册一次，所以在这里选择第2中思路。
 
 ## 0x03 实现
-### 定义 `BroadcastReceiver`
 #### 添加权限
 ```java
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -86,7 +83,7 @@ public interface NetStateChangeObserver {
 }
 ```
 
-#### 实现 `BroadcastReceiver`
+#### 实现 BroadcastReceiver
 ```java
 /**
  * 监听网络状态变化的BroadcastReceiver
@@ -165,7 +162,7 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 }
 ```
 
-### `Application` 注册 `BroadcastReceiver`
+#### Application 注册 BroadcastReceiver
 ```java
 public class AppContext extends Application{
 
@@ -185,7 +182,7 @@ public class AppContext extends Application{
 }
 ```
 
-### `BaseActivity` 抽取
+#### BaseActivity 抽取
 ```java
 public class BaseActivity extends AppCompatActivity implements NetStateChangeObserver {
 
