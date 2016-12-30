@@ -10,7 +10,7 @@
         android:id="@+id/net_error_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_gray">
+        android:background="@color/light_green">
 
         <ImageView
             android:id="@+id/net_error_img"
