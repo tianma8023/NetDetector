@@ -1,7 +1,5 @@
 package com.tianma.netdetector.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.tianma.netdetector.lib.NetStateChangeObserver;
@@ -38,11 +36,9 @@ public class BaseActivity extends AppCompatActivity implements NetStateChangeObs
 
     @Override
     public void onNetDisconnected() {
-
     }
 
     @Override
     public void onNetConnected(NetworkType networkType) {
-
     }
 }

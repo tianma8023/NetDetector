@@ -39,8 +39,6 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 
     /**
      * 注册网络监听
-     *
-     * @param context
      */
     public static void registerReceiver(@NonNull Context context) {
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -49,8 +47,6 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 
     /**
      * 取消网络监听
-     *
-     * @param context
      */
     public static void unregisterReceiver(@NonNull Context context) {
         context.unregisterReceiver(InstanceHolder.INSTANCE);
@@ -58,8 +54,6 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 
     /**
      * 注册网络变化Observer
-     *
-     * @param observer
      */
     public static void registerObserver(NetStateChangeObserver observer) {
         if (observer == null)
@@ -71,8 +65,6 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 
     /**
      * 取消网络变化Observer的注册
-     *
-     * @param observer
      */
     public static void unregisterObserver(NetStateChangeObserver observer) {
         if (observer == null)
