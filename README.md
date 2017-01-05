@@ -41,7 +41,7 @@ A sample of detecting the changement of network state on Android device by using
     - 抽象 `BaseActivity` ，提供注册/取消注册 `NetStateChangeObserver` 观察者的方法， 并实现 `NetStateChangeObserver`
     - 需要监听网络状态的 `Activity` 调用 `BaseActivity` 提供的方法即可
 
-上面的两种思路，比较重要的区别在于，第1中是在 `Activity` 中注册 `BroadcastReceiver` , 后者是在 `Application` 中注册 `BroadcastReceiver`。前者需要多次注册 `BroadcastReceiver` 而后者只注册一次，所以在这里选择第2中思路。
+上面的两种思路，比较重要的区别在于，第1种是在 `Activity` 中注册 `BroadcastReceiver` , 第2种是在 `Application` 中注册 `BroadcastReceiver`。前者需要多次注册 `BroadcastReceiver` 而后者只注册一次，所以在这里选择第2种思路。
 
 ## 0x03 实现
 #### 添加权限
