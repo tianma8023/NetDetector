@@ -20,7 +20,7 @@ A sample library of detecting the changement of network state on Android device 
 2. 在相应 **模块** 的 `build.gradle` 中加入库的依赖：
     ```Groovy
         dependencies {
-                compile 'com.github.tianma8023:NetDetector:V0.2.0'
+                compile 'com.github.tianma8023:NetDetector:v0.2.0'
         }
     ```
 
