@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class NetStateChangeReceiver extends BroadcastReceiver {
 
-    private static final String TAG = NetStateChangeReceiver.class.getSimpleName();
-
     private static class InstanceHolder {
         private static final NetStateChangeReceiver INSTANCE = new NetStateChangeReceiver();
     }
@@ -75,7 +73,7 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
     }
 
     /**
-     * 通知所有的Observer网络状态变化
+     * 通知所有的Observer网络状态已经发生变化
      */
     private void notifyObservers(NetworkType networkType) {
         if (networkType == NetworkType.NETWORK_NO) {

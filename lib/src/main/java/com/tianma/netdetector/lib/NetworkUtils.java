@@ -3,11 +3,8 @@ package com.tianma.netdetector.lib;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
-
-import java.lang.reflect.Method;
 
 /**
  * 网络状态相关工具类
@@ -24,121 +21,10 @@ public class NetworkUtils {
      *
      * @return NetworkInfo
      */
+    @RequiresPermission("android.permission.ACCESS_NETWORK_STATE")
     private static NetworkInfo getActiveNetworkInfo(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo();
-    }
-
-    /**
-     * 判断网络是否连接
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
-     *
-     * @return {@code true}: 是<br>{@code false}: 否
-     */
-    public static boolean isConnected(Context context) {
-        NetworkInfo info = getActiveNetworkInfo(context);
-        return info != null && info.isConnected();
-    }
-
-    /**
-     * 判断移动数据是否打开
-     *
-     * @return {@code true}: 是<br>{@code false}: 否
-     */
-    public static boolean isDataEnabled(Context context) {
-        try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            Method getMobileDataEnabledMethod = tm.getClass().getDeclaredMethod("getDataEnabled");
-            if (null != getMobileDataEnabledMethod) {
-                return (boolean) getMobileDataEnabledMethod.invoke(tm);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    /**
-     * 打开或关闭移动数据
-     * <p>需系统应用 需添加权限{@code <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>}</p>
-     *
-     * @param enabled {@code true}: 打开<br>{@code false}: 关闭
-     */
-    public static void setDataEnabled(Context context, boolean enabled) {
-        try {
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            Method setMobileDataEnabledMethod = tm.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
-            if (null != setMobileDataEnabledMethod) {
-                setMobileDataEnabledMethod.invoke(tm, enabled);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 判断网络是否是4G
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
-     *
-     * @return {@code true}: 是<br>{@code false}: 否
-     */
-    public static boolean is4G(Context context) {
-        NetworkInfo info = getActiveNetworkInfo(context);
-        return info != null && info.isAvailable() && info.getSubtype() == TelephonyManager.NETWORK_TYPE_LTE;
-    }
-
-    /**
-     * 判断wifi是否打开
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>}</p>
-     *
-     * @return {@code true}: 是<br>{@code false}: 否
-     */
-    public static boolean isWifiEnabled(Context context) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        return wifiManager.isWifiEnabled();
-    }
-
-    /**
-     * 打开或关闭wifi
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>}</p>
-     *
-     * @param enabled {@code true}: 打开<br>{@code false}: 关闭
-     */
-    @RequiresPermission("android.permission.CHANGE_WIFI_STATE")
-    public static void setWifiEnabled(Context context, boolean enabled) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        if (enabled) {
-            if (!wifiManager.isWifiEnabled()) {
-                wifiManager.setWifiEnabled(true);
-            }
-        } else {
-            if (wifiManager.isWifiEnabled()) {
-                wifiManager.setWifiEnabled(false);
-            }
-        }
-    }
-
-    /**
-     * 判断wifi是否连接状态
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}</p>
-     *
-     * @return {@code true}: 连接<br>{@code false}: 未连接
-     */
-    public static boolean isWifiConnected(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm != null && cm.getActiveNetworkInfo() != null
-                && cm.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
-    }
-
-    /**
-     * 获取网络运营商名称
-     * <p>中国移动、如中国联通、中国电信</p>
-     *
-     * @return 运营商名称
-     */
-    public static String getNetworkOperatorName(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return tm != null ? tm.getNetworkOperatorName() : null;
     }
 
     /**
@@ -155,6 +41,7 @@ public class NetworkUtils {
      * <li>{@link NetworkType#NETWORK_NO     } </li>
      * </ul>
      */
+    @RequiresPermission("android.permission.ACCESS_NETWORK_STATE")
     public static NetworkType getNetworkType(Context context) {
         NetworkType netType = NetworkType.NETWORK_NO;
         NetworkInfo info = getActiveNetworkInfo(context);
