@@ -6,6 +6,9 @@
 /build
 /captures
 .externalNativeBuild
+*.classpath
+*.project
+*.settings
 
 
 # Built application files
