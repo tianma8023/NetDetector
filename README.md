@@ -1,5 +1,5 @@
 # NetDetector
-A sample library of detecting the changement of network state on Android device by using BroadcastReceiver.
+A simple library that can detect network state changes on Android device by using BroadcastReceiver.
 
 通过使用BroadcastReceiver来检测Android设备网络变化的库
 

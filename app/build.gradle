@@ -27,5 +27,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
 //    compile project(':lib')
-    compile 'com.github.tianma8023:NetDetector:-SNAPSHOT'
+    compile 'com.github.tianma8023:NetDetector:v0.2.0'
 }
